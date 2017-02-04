@@ -1,0 +1,4 @@
+mstranslator==0.2.6
+oauthlib==2.0.1
+requests==2.13.0
+requests-oauthlib==0.7.0
