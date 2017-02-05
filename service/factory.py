@@ -9,9 +9,19 @@ def to_coco(data):
     "template": {
             "actions": [
                 {
-                    "label": "クックパッドを見る",
+                    "label": "クックパッドで見る",
                     "type": "uri",
                     "uri": "https://cookpad.com/search/" + data['name']
+                },
+                {
+                    "label": "楽天レシピで見る",
+                    "type": "uri",
+                    "uri": "http://recipe.rakuten.co.jp/search/" + data['name']
+                },
+                {
+                    "label": "Nadiaで見る",
+                    "type": "uri",
+                    "uri": "https://oceans-nadia.com/category?q=" + data['name']
                 }
             ],
             "text": data['name'],
