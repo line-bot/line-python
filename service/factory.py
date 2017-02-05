@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import random
 
 def to_coco(data):
     return {
@@ -33,6 +34,7 @@ def to_coco(data):
         ]
     }
 def to_postback(data ,id):
+    random.shuffle(data)
     data0 = json.dumps({"state":"1","menu_id":data[0]['id'],"id":id,"imageUrl":data[0]['imageUrl'], "name":data[0]['name'] })
     data1 = json.dumps({"state":"1","menu_id":data[1]['id'],"id":id,"imageUrl":data[1]['imageUrl'], "name":data[1]['name'] })
     data2 = json.dumps({"state":"1","menu_id":data[2]['id'],"id":id,"imageUrl":data[2]['imageUrl'], "name":data[2]['name'] })
