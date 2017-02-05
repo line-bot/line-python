@@ -1,15 +1,33 @@
 # -*- coding: utf-8 -*-
 import json
 
+def to_coco(data):
+    return {
+        "messages":[
+            {
+    "altText": "this is a buttons template",
+    "template": {
+            "actions": [
+                {
+                    "label": "クックパッドを見る",
+                    "type": "uri",
+                    "uri": "https://cookpad.com/search/" + data['name']
+                }
+            ],
+            "text": data['name'],
+            "thumbnailImageUrl": data['imageUrl'],
+            "type": "buttons"
+        },
+        "type": "template"
+    }
+        ]
+    }
 def to_postback(data ,id):
-    print(type(data[3]['id']))
-    print(data[3]['id'])
-    data0 = json.dumps({"state":"2","menu_id":data[0]['id'],"id":id})
-    data1 = json.dumps({"state":"2","menu_id":data[1]['id'],"id":id})
-    data2 = json.dumps({"state":"2","menu_id":data[2]['id'],"id":id})
-    data3 = json.dumps({"state":"2","menu_id":data[3]['id'],"id":id})
-    data4 = json.dumps({"state":"2","menu_id":data[4]['id'],"id":id})
-    print(type(data0))
+    data0 = json.dumps({"state":"1","menu_id":data[0]['id'],"id":id,"imageUrl":data[0]['imageUrl'], "name":data[0]['name'] })
+    data1 = json.dumps({"state":"1","menu_id":data[1]['id'],"id":id,"imageUrl":data[1]['imageUrl'], "name":data[1]['name'] })
+    data2 = json.dumps({"state":"1","menu_id":data[2]['id'],"id":id,"imageUrl":data[2]['imageUrl'], "name":data[2]['name'] })
+    data3 = json.dumps({"state":"1","menu_id":data[3]['id'],"id":id,"imageUrl":data[3]['imageUrl'], "name":data[3]['name'] })
+    data4 = json.dumps({"state":"1","menu_id":data[4]['id'],"id":id,"imageUrl":data[4]['imageUrl'], "name":data[4]['name'] })
     return {
         "messages":[
         {
@@ -20,7 +38,7 @@ def to_postback(data ,id):
             "columns": [
             {
             "thumbnailImageUrl": data[0]['imageUrl'],
-            "text": "                           ===========================",
+            "text":data[0]['name'],
             "actions": [
             {
             "type": "postback",
@@ -31,7 +49,7 @@ def to_postback(data ,id):
             },
             {
             "thumbnailImageUrl": data[1]['imageUrl'],
-            "text": "                           ===========================",
+            "text":data[1]['name'],
             "actions": [
             {
             "type": "postback",
@@ -42,7 +60,7 @@ def to_postback(data ,id):
             },
             {
             "thumbnailImageUrl": data[2]['imageUrl'],
-            "text": "                           ===========================",
+            "text":data[2]['name'],
             "actions": [
             {
             "type": "postback",
@@ -53,7 +71,7 @@ def to_postback(data ,id):
             },
             {
             "thumbnailImageUrl": data[3]['imageUrl'],
-            "text": "                           ===========================",
+            "text":data[3]['name'],
             "actions": [
             {
             "type": "postback",
@@ -64,7 +82,7 @@ def to_postback(data ,id):
             },
             {
             "thumbnailImageUrl": data[4]['imageUrl'],
-            "text": "                           ===========================",
+            "text":data[4]['name'],
             "actions": [
             {
             "type": "postback",
@@ -78,30 +96,6 @@ def to_postback(data ,id):
             }
             ]
         }
-    # return {
-    #     "messages"[
-    #         {
-    #             "type": "template",
-    #             "altText": "おすすめレストラン",
-    #             "template": {
-    #                 "type": "carousel",
-    #                 "columns": [
-    #                     {
-    #                         "thumbnailImageUrl": data[0]['imageUrl'],
-    #                         "text": data[0]['name'],
-    #                         "actions": [
-    #                             {
-    #                                 "type": "postback",
-    #                                 "label": "これにする",
-    #                                 "data": data0
-    #                             }
-    #                         ]
-    #                     },
-    #                 ]
-    #             }
-    #         }
-    #     ]
-    # }
 def to_message(data):
     return {
     "messages":[

@@ -11,20 +11,9 @@ app = Flask(__name__)
 @app.route("/callback", methods=['POST'])
 
 def callback():
-    # print(len(request.json['events']))
-    # print(type(request.json['events']))
 
-    # data = {
-    #     'messages':[
-    #         {
-    #             'type':'text',
-    #             'text':'おやすみ'
-    #         }
-    #     ]
-    # }
     for data in request.json['events']:
         controller.middleware(data)
-    # line.reply(request.json['events'][0]['replyToken'],data)
     return ''
 
 if __name__ == "__main__":

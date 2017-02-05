@@ -4,6 +4,7 @@ import json
 from util.settings import settings
 
 _REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
+_PUSH_ENDPOINT = 'https://api.line.me/v2/bot/message/push'
 
 class Line(object):
     def __init__(self):
@@ -18,5 +19,17 @@ class Line(object):
         data['replyToken'] = token
         req = requests.post(_REPLY_ENDPOINT, headers=self.header, data=json.dumps(data))
         print(req.text)
-
+    def push(self,to,data):
+        data['to'] = to
+        req = requests.post(_PUSH_ENDPOINT, headers=self.header, data=json.dumps(data))
+    def push_massage(self,to,text):
+        data = {
+            "messages":[
+                {
+                    "type":"text",
+                    "text":text
+                }
+            ]
+        }
+        self.push(to,data)
 line = Line()
